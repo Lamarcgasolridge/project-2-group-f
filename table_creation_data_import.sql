@@ -48,8 +48,8 @@ SELECT DISTINCT population_total_long."Country Name", region_id."Region"
 FROM population_total_long
 RIGHT JOIN region_id ON population_total_long."Country Name" = region_id."name"
 
-
-SELECT DISTINCT population_total_long."Year", population_total_long."Country Name", population_total_long."Count", greenhouse_gas."Value", greenhouse_gas."Category of Emission", region_id."Region", region_id."Sub-Region"
+SELECT DISTINCT population_total_long."Year", population_total_long."Country Name", population_total_long."Population", greenhouse_gas."Value", greenhouse_gas."Category of Emission", region_id."Region", region_id."Sub-Region"
 FROM population_total_long
-INNER JOIN greenhouse_gas ON population_total_long."Country Name" = greenhouse_gas."Country or Area" 
+INNER JOIN greenhouse_gas ON population_total_long."Country Name" = greenhouse_gas."Country or Area" AND population_total_long."Year" = greenhouse_gas."Year"
 LEFT JOIN region_id ON population_total_long."Country Name" = region_id."name"
+WHERE region_id."Region" LIKE 'Europe'
